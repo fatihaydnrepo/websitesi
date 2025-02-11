@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Template | Nihory</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="img/fatih.png"/>
+
+    <!------------------ External CSS ------------------>
+    <link rel="stylesheet" href="style.css">
+
+    <!------------------ Box Icons ------------------>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!------------------------ Header starts from here ----------------------->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+
+            <div>
+                <a href="#" class="nav__logo">Nihory</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <div class="nav__close" id="nav-close">
+                    <i class='bx bx-x'></i>
+                </div>
+
+                <ul class="nav__list">
+                    <li class="nav__item"> <a href="#home" class="nav__link active"> Home </a></li>
+                    <li class="nav__item"> <a href="#about" class="nav__link"> About </a></li>
+                    <li class="nav__item"> <a href="#skills" class="nav__link"> Skills </a></li>
+                    <li class="nav__item"> <a href="#works" class="nav__link"> Works </a></li>
+                    <li class="nav__item"> <a href="#contact" class="nav__link"> Contact </a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!------------------------ Header ends from here ----------------------->
+
+    <!------------------------ Body starts from here ----------------------->
+    <main class="l-main">
+        <!------------------- Home ------------------->
+        <section class="home" id="home">
+            <div class="home__container bd-grid">
+                <div class="home__data">
+                    <div class="home__img">
+                        <img src="img/fatih.jpg" alt="F" title="Nihory Berst">
+                    </div>
+
+                    <h1 class="home__title">Fatih Aydın</h1>
+                    <span class="home__profession">Devops Engineer</span>
+
+                    <div class="home__social">
+                        <a href="https://www.linkedin.com/in/fatih-aydin-rept/" class="home__social-link"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://github.com/fatihaydnrepo" class="home__social-link"><i class='bx bxl-github'></i></a>
+                    </div>
+
+                    <a download="" href="#" class="button home__button">Welcome My Page</a>
+                </div>
+            </div>
+        </section>
+
+        <!-------------------------- About ---------------------------->
+        <section class="about section" id="about">
+            <span class="section-subtitle">My intro</span>
+
+            <h2 class="section-title">About Me</h2>
+
+            <div class="about__container bd-grid">
+                <div class="about__data" style="margin-top: 80px;">
+                    <p class="about__description">
+                        I have been actively working in the DevOps and Monitoring elds for about 3 years. During this time, I have worked
+                        on various projects using advanced technologies such as Azure DevOps, Kubernetes, Docker, RabbitMQ,
+                        Elasticsearch,NewRelic,Jenkins Redis, Huawei Cloud, and Microsoft Azure. Additionally, I served as a team leader
+                        in a small monitoring team at the company where I worked as a consultant. Throughout this period, I gained in-depth
+                        knowledge of infrastructure management, automation, and monitoring solutions. Moreover, I am customeroriented, a team player with an analytical mindset, open to learning, and have a methodical approach to work.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="about__information">
+                        <h3 class="about__information-title">Information</h3>
+
+                        <div class="about__information-data">
+                            <i class='bx bxs-user about__information-icon'></i>
+                            <span>Fatih Aydın</span>
+                        </div>
+
+                        <div class="about__information-data">
+                            <i class='bx bxs-phone about__information-icon'></i>
+                            <span>+90 505 0216874</span>
+                        </div>
+
+                        <div class="about__information-data">
+                            <i class='bx bxs-envelope about__information-icon'></i>
+                            <span>fatih_aydn@outlook.com</span>
+                        </div>
+                    </div>
+
+                    <div class="about__information">
+                        <h3 class="about__information-title">Experience and support</h3>
+
+                        <div class="about__information-data">
+                            <i class='bx bxs-medal about__information-icon'></i>
+                            <div>
+                                <span class="about__information-subtitle">3 Years Job</span>
+                                <span class="about__information-subtitle-small">Experience</span>
+                            </div>
+                        </div>
+
+                        <div class="about__information-data">
+                            <i class='bx bxs-briefcase about__information-icon'></i>
+                            <div>
+                                <span class="about__information-subtitle">20+ Projects</span>
+                                <span class="about__information-subtitle-small">Completed</span>
+                            </div>
+                        </div>
+
+                        <div class="about__information-data">
+                            <i class='bx bx-support about__information-icon'></i>
+                            <div>
+                                <span class="about__information-subtitle">Support</span>
+                                <span class="about__information-subtitle-small">Online 24/7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--------------------------------- Skills ------------------------------->
+        <section class="skills section" id="skills">
+            <span class="section-subtitle">Why Choose Me</span>
+            <h2 class="section-title">Some of My Experiences</h2>
+
+            <div class="skills__container bd-grid">
+                <!-- Cloud & DevOps Section -->
+                <div class="skills__content">
+                    <h3 class="skills__subtitle">Cloud & DevOps</h3>
+                    <div class="skills__data">
+                        <span class="skills__name">Azure DevOps</span>
+                        <div class="skills__bar skills__azure-devops"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Kubernetes</span>
+                        <div class="skills__bar skills__kubernetes"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Microsoft Azure</span>
+                        <div class="skills__bar skills__azure"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Terraform</span>
+                        <div class="skills__bar skills__terraform"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Huawei Cloud</span>
+                        <div class="skills__bar skills__huawei-cloud"></div>
+                    </div>
+                </div>
+
+                <!-- Monitoring & Databases Section -->
+                <div class="skills__content">
+                    <h3 class="skills__subtitle">Monitoring & Databases</h3>
+                    <div class="skills__data">
+                        <span class="skills__name">Elasticsearch</span>
+                        <div class="skills__bar skills__elasticsearch"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">RabbitMQ</span>
+                        <div class="skills__bar skills__rabbitmq"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Redis</span>
+                        <div class="skills__bar skills__redis"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">SQL</span>
+                        <div class="skills__bar skills__sql"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">New Relic</span>
+                        <div class="skills__bar skills__newrelic"></div>
+                    </div>
+                </div>
+
+                <!-- Automation & Scripting Section -->
+                <div class="skills__content">
+                    <h3 class="skills__subtitle">Automation & Scripting</h3>
+                    <div class="skills__data">
+                        <span class="skills__name">Bash</span>
+                        <div class="skills__bar skills__bash"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Scripting (Basic)</span>
+                        <div class="skills__bar skills__script-basic"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Git & Bitbucket</span>
+                        <div class="skills__bar skills__git"></div>
+                    </div>
+                </div>
+
+                <!-- Operating Systems Section -->
+                <div class="skills__content">
+                    <h3 class="skills__subtitle">Operating Systems</h3>
+                    <div class="skills__data">
+                        <span class="skills__name">Windows</span>
+                        <div class="skills__bar skills__windows"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Linux</span>
+                        <div class="skills__bar skills__linux"></div>
+                    </div>
+                    <div class="skills__data">
+                        <span class="skills__name">Docker</span>
+                        <div class="skills__bar skills__docker"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!---------------------------- Education ---------------------------->
+        <section class="certifications section">
+            <span class="section-subtitle">My Certifications</span>
+            <h2 class="section-title">Certifications</h2>
+
+            <div class="certifications__container">
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">GitHub Foundations</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+
+                <div class="certification__line"></div>
+
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">Huawei Cloud HCCDA – Artificial Intelligence</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+
+                <div class="certification__line"></div>
+
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">Huawei Cloud HCCDA – Cloud Native</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+
+                <div class="certification__line"></div>
+
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">Huawei Cloud HCCDA – Tech Essentials</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+
+                <div class="certification__line"></div>
+
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">Huawei Cloud HCCDP – Solution Architectures</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+
+                <div class="certification__line"></div>
+
+                <div class="certification__content">
+                    <div class="certification__rounder"></div>
+                    <h3 class="certification__title">Huawei Cloud Developer Experts</h3>
+                    <p class="certification__date">2024 - 2027</p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!----------------------------------- Project in Mind ------------------------->
+        <section class="project section">
+            <div class="project__container bd-grid">
+                <div class="project__data">
+                    <h2 class="section-title project__title">Do you have a project in mind?</h2>
+                    <p class="project__description">
+                        "The only way to do great work is to love what you do." This philosophy drives my work as a DevOps professional. With over 3 years of experience in creating scalable, automated infrastructure solutions, I use my passion for technology to deliver exceptional results. From Kubernetes to Azure DevOps, I’m ready to turn your ideas into reliable, efficient systems.
+                    </p>
+                    <a href="#contact" class="button button__light">Contact Me</a>
+                </div>
+
+                <img src="img/fatih.jpg" title="Innovative Solutions by [Your Name]" alt="Project Collaboration" class="project__img">
+            </div>
+        </section>
+
+
+
+
+        <!---------------------------------- Works --------------------------->
+        <section class="works section" id="works">
+            <span class="section-subtitle">My Portfolio</span>
+            <h2 class="section-title">Recent Works</h2>
+
+            <div class="works__container bd-grid">
+                <!-- Server Management & Optimization -->
+                <div class="works__img">
+                    <img src="img/azuree.png" alt="Server Management" title="Server Management">
+                    <div class="works__data">
+                        <span class="works__title">Azure</span>
+                        <p class="works__description">I have experience in cloud infrastructure management, DevOps processes, and automation on Azure.</p>
+                    </div>
+                </div>
+
+                <!-- Azure DevOps Pipeline -->
+                <div class="works__img">
+                    <img src="img/kubernet.png" alt="Azure DevOps Pipelines" title="Azure DevOps Pipelines">
+                    <div class="works__data">
+                        <span class="works__title">Kubernetes</span>
+                        <p class="works__description">I have expertise in managing and automating containerized applications using Kubernetes for scalable and reliable deployments.</p>
+                    </div>
+                </div>
+
+                <!-- Kubernetes HPA -->
+                <div class="works__img">
+                    <img src="img/devops.jpg" alt="Kubernetes HPA" title="Kubernetes HPA">
+                    <div class="works__data">
+                        <span class="works__title">Devops</span>
+                        <p class="works__description">I specialize in automating and optimizing software development, deployment, and infrastructure management processes in DevOps.</p>
+                    </div>
+                </div>
+
+                <!-- Monitoring Setup -->
+                <div class="works__img">
+                    <img src="img/monitoringg.jpg" alt="Monitoring Setup" title="Monitoring Setup">
+                    <div class="works__data">
+                        <span class="works__title">Monitoring </span>
+                        <p class="works__description">I have expertise in setting up and managing monitoring systems to track performance and ensure system reliability.</p>
+                    </div>
+                </div>
+
+                <!-- Tutorial Website -->
+                <div class="works__img">
+                    <img src="img/azure-devops.png" alt="Tutorial Website" title="Tutorial Website">
+                    <div class="works__data">
+                        <span class="works__title">Azure Devops</span>
+                        <p class="works__description">Implementing YAML transformations and pipeline automation for streamlined CI/CD.</p>
+                    </div>
+                </div>
+
+                <!-- DevOps Server Setup -->
+                <div class="works__img">
+                    <img src="img/huawei.jpg" alt="DevOps Server Setup" title="DevOps Server Setup">
+                    <div class="works__data">
+                        <span class="works__title">Huawei Cloud</span>
+                        <p class="works__description">I have experience working with Huawei Cloud services, specializing in cloud infrastructure management and solution architecture</p>
+                    </div>
+                </div>
+        </section>
+
+
+
+
+
+        <!----------------------------------- Contact ------------------------------>
+        <section class="contact section" id="contact">
+            <span class="section-subtitle">Contact Me</span>
+            <h2 class="section-title">Get In Touch</h2>
+
+            <div class="contact__container bd-grid">
+                <form action="#" class="contact__form">
+                    <div class="contact__inputs">
+                        <input type="text" placeholder="Name" class="contact__input">
+                        <input type="mail" placeholder="Email" class="contact__input">
+                    </div>
+
+                    <input type="text" placeholder="Project" class="contact__input">
+                    <textarea placeholder="Message" name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                    <input type="submit" value="Send Message" class="button contact__button">
+                </form>
+
+                <div>
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">Call Me</h3>
+                        <span class="contact__text">+90 5050216874</span>
+                    </div>
+
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">E-mail</h3>
+                        <span class="contact__text">fatih_aydn@outlook.com</span>
+                    </div>
+
+                    <div class="contact__info">
+                        <h3 class="contact__subtitle">Location</h3>
+                        <span class="contact__text">Urla, Izmir</span>
+                        <span class="contact__text">Turkey</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!------------------------ Body ends from here ----------------------->
+
+
+
+    <!------------------------- Javascript file ---------------------------->
+    <script src="script.js"></script>
+</body>
+</html>
