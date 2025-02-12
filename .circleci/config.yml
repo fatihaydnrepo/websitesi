@@ -26,11 +26,11 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1 .  # Docker image'ı SHA hash ile etiketleyerek oluşturuyoruz
+            docker build -t $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 .  # Docker image'ı SHA hash ile etiketleyerek oluşturuyoruz
       - run:
           name: Tag Docker Image
           command: |
-            docker tag reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1 reptilianusbileciktus/devopswebsite:latest  # Docker imajına "latest" etiketi ekliyoruz
+            docker tag $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 $DOCKER_USERNAME/devopswebsite:latest  # Docker imajına "latest" etiketi ekliyoruz
           
   # Docker image üzerinde test işlemi
   test:
@@ -43,7 +43,7 @@ jobs:
       - run:
           name: Test Docker Image
           command: |
-            docker run --rm reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1 websitetest  # Docker imajınızı çalıştırıp testleri başlatıyoruz
+            docker run --rm $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 websitetest  # Docker imajınızı çalıştırıp testleri başlatıyoruz
 
   # Docker image'ı registry'e push etmek
   push:
@@ -60,5 +60,5 @@ jobs:
       - run:
           name: Push Docker Image
           command: |
-            docker push reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1  # Docker imajını registry'e push ediyoruz
-            docker push reptilianusbileciktus/devopswebsite:latest  # Latest etiketi ile push ediyoruz
+            docker push $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1  # Docker imajını registry'e push ediyoruz
+            docker push $DOCKER_USERNAME/devopswebsite:latest  # Latest etiketi ile push ediyoruz
