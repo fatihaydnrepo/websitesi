@@ -1,0 +1,71 @@
+deploy: 
+  name: devopswebsite
+  env: 
+  replicas: 1
+  port: 80
+  targetport: 3000
+  image: reptilianusbileciktus/devopswebsite
+  tag: latest
+  resources:
+    enabled: false
+    requestCpu: 
+    requestMemory: 
+    limitCpu:
+    limitMemory: 
+svc:
+  enabled: true
+  name: devopswebsite
+  port2:
+    enabled: false
+    targetport: null
+  port3:
+    enabled: false
+    targetport: null
+hpa:
+  autoscaling:
+    enabled: false
+    minReplicas: 
+    maxReplicas: 
+    targetCPUUtilizationPercentage: 
+    targetMemoryUtilizationPercentage: 
+probe:
+  enabled: false
+  failureThreshold: 
+  periodSeconds: 
+  timeoutSeconds: 
+  initialDelaySeconds: 
+  pathreadiness: 
+  pathliveness: 
+  port: 
+ingress:
+  enabled: false
+  hosts: 
+  customAnnotations:
+    enabled: true
+    kubernetes.io/ingress.class: 
+  defaultPath: /
+  pathType: Prefix
+configmap:
+  enabled: false
+  name: 
+appconfigs:
+  configmap:
+    enabled: false
+volumeMounts:
+  enabled: false
+  pathOnContainer: 
+  pathOnHost: 
+secrets:
+  enabled: false
+  secretName:  
+externalSecret:
+  enabled: false
+  targetName: 
+nfs:
+  enabled: false
+  name: 
+  mountPath: 
+  claimName: 
+imagePullSecrets:
+  - name: docker-hub-secret
+

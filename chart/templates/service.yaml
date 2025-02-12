@@ -1,0 +1,28 @@
+{{- if .Values.svc.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.svc.name }}
+spec:
+  selector:
+    app: {{ .Values.deploy.name }}
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      name: port1
+      port: 80
+      targetPort: {{ .Values.deploy.targetport }}
+    {{- if .Values.svc.port2.enabled }}
+    - protocol: TCP
+      name: port2
+      port: {{ .Values.svc.port2.targetport }}
+      targetPort: {{ .Values.svc.port2.targetport }}
+    {{- end }}
+    {{- if .Values.svc.port3.enabled }}
+    - protocol: TCP
+      name: port3
+      port: {{ .Values.svc.port3.targetport }}
+      targetPort: {{ .Values.svc.port3.targetport }}
+    {{- end }}
+{{- end }}
+
