@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Setup Google Cloud CLI
           command: |
-            echo $GCLOUD_SERVICE_KEY | base64 --decode > /root/gcloud-service-key.json
+            echo $GCLOUD_SERVICE_KEY | base64 --decode -d > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json
             gcloud config set project ${GOOGLE_PROJECT_ID}
             gcloud config set compute/zone ${GOOGLE_COMPUTE_ZONE}
