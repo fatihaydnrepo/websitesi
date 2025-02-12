@@ -65,11 +65,15 @@ jobs:
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
             gcloud components install gke-gcloud-auth-plugin
+            echo 'source ~/.bashrc' >> ~/.profile  # Bu komut ile profile dosyasına bashrc'i dahil ediyoruz
+            source ~/.bashrc
             
       - run:
           name: Verify gcloud installation
           command: |
             gcloud --version  # SDK'nın doğru yüklendiğini kontrol edin
+            gcloud container clusters get-credentials CLUSTER_NAME
+            helm version
       - run:
           name: Setup Google Cloud CLI
           command: |
