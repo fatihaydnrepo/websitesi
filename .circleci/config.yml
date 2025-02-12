@@ -65,6 +65,7 @@ jobs:
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
             gcloud components install gke-gcloud-auth-plugin
+            gcloud container clusters get-credentials website --region=europe-west2
             echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.bashrc
             source ~/.bashrc
             
@@ -79,8 +80,9 @@ jobs:
             echo $GCLOUD_SERVICE_KEY > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json
             gcloud config set project ${GOOGLE_PROJECT_ID}
-            gcloud config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+            gcloud config set compute/zone europe-west2
             gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+            gcloud components install gke-gcloud-auth-plugin
             gcloud container clusters get-credentials website --region=europe-west2
 
       - run:
