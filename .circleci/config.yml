@@ -65,7 +65,7 @@ jobs:
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
             gcloud components install gke-gcloud-auth-plugin
-            echo 'source ~/.bashrc' >> ~/.profile  # Bu komut ile profile dosyasına bashrc'i dahil ediyoruz
+            echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.bashrc
             source ~/.bashrc
             
       - run:
