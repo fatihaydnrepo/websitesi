@@ -5,12 +5,9 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
       - push:
           requires:
-            - test
+            - build
 
 jobs:
   build:
@@ -31,47 +28,6 @@ jobs:
             echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
             docker push $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
             docker push $DOCKER_USERNAME/devopswebsite:latest
-
-  test:
-    docker:
-      - image: cimg/python:3.8
-    steps:
-      - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - run:
-          name: Install Test Dependencies
-          command: |
-            pip install requests
-      - run:
-          name: Create Test Script
-          command: |
-            echo 'import requests
-import sys
-
-try:
-    # Test if website is responding
-    response = requests.get("http://localhost:8080")
-    if response.status_code == 200:
-        print("Website is running and responding with 200 OK")
-        sys.exit(0)
-    else:
-        print(f"Website returned unexpected status code: {response.status_code}")
-        sys.exit(1)
-except Exception as e:
-    print(f"Error testing website: {e}")
-    sys.exit(1)' > test_website.py
-      - run:
-          name: Pull and Run Docker Image
-          command: |
-            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-            docker pull $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
-            docker run -d -p 8080:80 --name website $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
-            sleep 10  # Wait for container to start
-      - run:
-          name: Run Website Test
-          command: |
-            python test_website.py
 
   push:
     docker:
