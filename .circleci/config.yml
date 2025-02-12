@@ -64,6 +64,7 @@ jobs:
             mv linux-amd64/helm /usr/local/bin/helm  # Helm binary'sini doğru dizine 
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
+            gcloud components install gke-gcloud-auth-plugin
             
       - run:
           name: Verify gcloud installation
