@@ -64,10 +64,9 @@ jobs:
             mv linux-amd64/helm /usr/local/bin/helm  # Helm binary'sini doğru dizine 
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
-            echo helm güncellendi
-            gcloud components update
-            echo gcloud güncellendi
             gcloud components install gke-gcloud-auth-plugin kubectl
+            gcloud auth login --brief
+            gcloud container clusters get-credentials website --region=europe-west2
             echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.bashrc
             source ~/.bashrc
             gcloud components list
@@ -86,8 +85,7 @@ jobs:
             gcloud config set project ${GOOGLE_PROJECT_ID}
             gcloud config set compute/zone europe-west2
             gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
-            gcloud components install gke-gcloud-auth-plugin
-            gcloud container clusters get-credentials website --region=europe-west2
+
 
       - run:
           name: Deploy to GKE with Helm
