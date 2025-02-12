@@ -55,7 +55,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update --no-cache curl python3 py3-pip
-            pip install google-cloud-sdk
+            curl https://sdk.cloud.google.com | bash
       - run:
           name: Setup Google Cloud CLI
           command: |
