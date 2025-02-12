@@ -81,6 +81,9 @@ jobs:
             gcloud config set project ${GOOGLE_PROJECT_ID}
             gcloud config set compute/zone ${GOOGLE_COMPUTE_ZONE}
             gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+            gke-gcloud-auth-plugin --version
+            gcloud container clusters get-credentials website --region=europe-west2
+
       - run:
           name: Deploy to GKE with Helm
           command: |
