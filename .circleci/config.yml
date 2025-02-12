@@ -1,6 +1,5 @@
 version: 2.1
 
-# Workflows kısmı, iş akışlarını tanımlar
 workflows:
   version: 2
   build_and_deploy:
@@ -13,52 +12,77 @@ workflows:
           requires:
             - test
 
-# Jobs kısmı, her adımda yapılacak işlemleri tanımlar
 jobs:
-  # Docker image build işlemi
   build:
     docker:
-      - image: cimg/python:3.8  # Python imajını kullanabilirsiniz, ihtiyacınıza göre değiştirebilirsiniz
+      - image: cimg/python:3.8
     steps:
-      - checkout  # Kodunuzu çekin
+      - checkout
       - setup_remote_docker:
-          docker_layer_caching: true  # Docker katmanlarını cache ederek daha hızlı build alırız
+          docker_layer_caching: true
       - run:
           name: Build Docker Image
           command: |
-            docker build -t $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 .  # Docker image'ı SHA hash ile etiketleyerek oluşturuyoruz
+            docker build -t $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 .
+            docker tag $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 $DOCKER_USERNAME/devopswebsite:latest
       - run:
-          name: Tag Docker Image
+          name: Save and Push Docker Image
           command: |
-            docker tag $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 $DOCKER_USERNAME/devopswebsite:latest  # Docker imajına "latest" etiketi ekliyoruz
-          
-  # Docker image üzerinde test işlemi
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker push $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
+            docker push $DOCKER_USERNAME/devopswebsite:latest
+
   test:
     docker:
-      - image: cimg/python:3.8  # Test için uygun bir imaj kullanıyoruz (veya ihtiyacınıza göre değiştirebilirsiniz)
+      - image: cimg/python:3.8
     steps:
-      - checkout  # Kodunuzu çekin
+      - checkout
       - setup_remote_docker:
-          docker_layer_caching: true  # Docker ortamını sağlıyoruz
+          docker_layer_caching: true
       - run:
-          name: Test Docker Image
+          name: Install Test Dependencies
           command: |
-            docker run --rm $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 websitetest  # Docker imajınızı çalıştırıp testleri başlatıyoruz
+            pip install requests
+      - run:
+          name: Pull and Run Docker Image
+          command: |
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker pull $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
+            docker run -d -p 8080:80 --name website $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
+            sleep 10  # Wait for container to start
+      - run:
+          name: Basic Website Test
+          command: |
+            # Create a simple test script
+            cat << 'EOF' > test_website.py
+            import requests
+            import sys
 
-  # Docker image'ı registry'e push etmek
+            try:
+                # Test if website is responding
+                response = requests.get('http://localhost:8080')
+                if response.status_code == 200:
+                    print("Website is running and responding with 200 OK")
+                    sys.exit(0)
+                else:
+                    print(f"Website returned unexpected status code: {response.status_code}")
+                    sys.exit(1)
+            except Exception as e:
+                print(f"Error testing website: {e}")
+                sys.exit(1)
+            EOF
+            python test_website.py
+
   push:
     docker:
-      - image: cimg/python:3.8  # Docker imajını çalıştıracak uygun bir base image kullanıyoruz
+      - image: cimg/python:3.8
     steps:
-      - checkout  # Kodunuzu çekin
       - setup_remote_docker:
-          docker_layer_caching: true  # Docker ortamını çalıştırabilmek için gerekli ortamı kuruyoruz
+          docker_layer_caching: true
       - run:
-          name: Log in to DockerHub
+          name: Push Latest Tag
           command: |
-            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin  # Docker Hub'a giriş yapıyoruz
-      - run:
-          name: Push Docker Image
-          command: |
-            docker push $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1  # Docker imajını registry'e push ediyoruz
-            docker push $DOCKER_USERNAME/devopswebsite:latest  # Latest etiketi ile push ediyoruz
+            echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+            docker pull $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1
+            docker tag $DOCKER_USERNAME/devopswebsite:$CIRCLE_SHA1 $DOCKER_USERNAME/devopswebsite:latest
+            docker push $DOCKER_USERNAME/devopswebsite:latest
