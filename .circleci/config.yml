@@ -18,9 +18,12 @@ jobs:
   # Docker image build işlemi
   build:
     docker:
-      - image: nginx:alpine
+      - image: cimg/python:3.8  # Python imajını kullanabiliriz, ihtiyacınıza göre değiştirebilirsiniz
     steps:
       - checkout  # Kodunuzu çekin
+      - setup_remote_docker:
+          version: 20.10.7  # Docker'ın çalışabilmesi için gerekli ortamı sağlıyoruz
+          docker_layer_caching: true  # Docker katmanlarını cache ederek daha hızlı build alırız
       - run:
           name: Build Docker Image
           command: |
@@ -33,9 +36,11 @@ jobs:
   # Docker image üzerinde test işlemi
   test:
     docker:
-      - image: nginx:alpine # Test için de uygun bir imaj kullanabilirsiniz
+      - image: cimg/python:3.8  # Test için uygun bir imaj kullanıyoruz (veya ihtiyacınıza göre değiştirebilirsiniz)
     steps:
       - checkout  # Kodunuzu çekin
+      - setup_remote_docker:
+          version: 20.10.7  # Docker ortamını sağlıyoruz
       - run:
           name: Test Docker Image
           command: |
@@ -44,11 +49,12 @@ jobs:
   # Docker image'ı registry'e push etmek
   push:
     docker:
-      - image: nginx:alpine  # Yine uygun bir base image kullanıyoruz
+      - image: cimg/python:3.8  # Docker imajını çalıştıracak uygun bir base image kullanıyoruz
     steps:
       - checkout  # Kodunuzu çekin
       - setup_remote_docker:
-          version: 20.10.7  # Docker'ı düzgün çalıştırabilmek için gerekli ortamı kuruyoruz
+          version: 20.10.7  # Docker ortamını çalıştırabilmek için gerekli ortamı kuruyoruz
+          docker_layer_caching: true
       - run:
           name: Log in to DockerHub
           command: |
@@ -56,5 +62,5 @@ jobs:
       - run:
           name: Push Docker Image
           command: |
-            docker push reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1  # Oluşturduğumuz imajı registry'e push ediyoruz
+            docker push reptilianusbileciktus/devopswebsite:$CIRCLE_SHA1  # Docker imajını registry'e push ediyoruz
             docker push reptilianusbileciktus/devopswebsite:latest  # Latest etiketi ile push ediyoruz
