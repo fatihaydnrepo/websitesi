@@ -56,6 +56,13 @@ jobs:
           command: |
             apk add --update --no-cache curl python3 py3-pip
             curl https://sdk.cloud.google.com | bash
+            echo "source /root/google-cloud-sdk/path.bash.inc" >> ~/.bashrc
+            echo "source /root/google-cloud-sdk/completion.bash.inc" >> ~/.bashrc
+            source ~/.bashrc  # Yeni PATH'i uygulayın
+      - run:
+          name: Verify gcloud installation
+          command: |
+            gcloud --version  # SDK'nın doğru yüklendiğini kontrol edin
       - run:
           name: Setup Google Cloud CLI
           command: |
