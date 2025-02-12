@@ -72,7 +72,6 @@ jobs:
           name: Verify gcloud installation
           command: |
             gcloud --version  # SDK'nın doğru yüklendiğini kontrol edin
-            gcloud container clusters get-credentials CLUSTER_NAME
             helm version
       - run:
           name: Setup Google Cloud CLI
