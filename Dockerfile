@@ -1,14 +1,15 @@
 # Use the official Nginx image from Docker Hub
 FROM nginx:alpine
 
-# Install Google Cloud SDK and required tools
+# Install required packages
 RUN apk add --no-cache curl bash tar python3 py3-pip
 
 # Install Google Cloud SDK
 RUN curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-455.0.0-linux-x86_64.tar.gz \
     && tar -xf google-cloud-cli-455.0.0-linux-x86_64.tar.gz \
     && ./google-cloud-sdk/install.sh --usage-reporting=false --command-completion=false --path-update=true \
-    && rm -rf google-cloud-cli-455.0.0-linux-x86_64.tar.gz
+    && rm -rf google-cloud-cli-455.0.0-linux-x86_64.tar.gz \
+    && source /google-cloud-sdk/path.bash.inc
 
 # Install Helm
 RUN curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz \
@@ -17,7 +18,7 @@ RUN curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz \
     && rm -rf helm.tar.gz
 
 # Install the gke-gcloud-auth-plugin
-RUN gcloud components install gke-gcloud-auth-plugin
+RUN /google-cloud-sdk/bin/gcloud components install gke-gcloud-auth-plugin
 
 # Set the environment variable for using the plugin
 RUN echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> /etc/profile.d/gke-gcloud-auth-plugin.sh
