@@ -62,6 +62,8 @@ jobs:
             curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz
             tar -xvzf helm.tar.gz
             mv linux-amd64/helm /usr/local/bin/helm  # Helm binary'sini doğru dizine 
+            helm repo add bitnami https://charts.bitnami.com/bitnami
+            helm repo update  # Repo güncelleme
             
       - run:
           name: Verify gcloud installation
