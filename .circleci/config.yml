@@ -56,6 +56,12 @@ jobs:
           command: |
             apk add --update --no-cache curl python3 py3-pip
             curl -sSL https://sdk.cloud.google.com | bash -s -- --disable-prompts
+            apk add --update --no-cache curl python3 py3-pip bash tar
+            curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-455.0.0-linux-x86_64.tar.gz
+            tar -xf google-cloud-cli-455.0.0-linux-x86_64.tar.gz
+            ./google-cloud-sdk/install.sh --usage-reporting=false --command-completion=false --path-update=false
+            export PATH=$PATH:$(pwd)/google-cloud-sdk/bin
+
       - run:
           name: Verify gcloud installation
           command: |
