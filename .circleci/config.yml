@@ -64,11 +64,12 @@ jobs:
             mv linux-amd64/helm /usr/local/bin/helm  # Helm binary'sini doğru dizine 
             helm repo add bitnami https://charts.bitnami.com/bitnami
             helm repo update  # Repo güncelleme
+            echo helm güncellendi
             gcloud components update
+            echo gcloud güncellendi
             gcloud components install gke-gcloud-auth-plugin kubectl
             echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.bashrc
             source ~/.bashrc
-            gcloud components update
             gcloud components list
 
             
