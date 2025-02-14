@@ -8,10 +8,10 @@ deploy:
   tag: latest
   resources:
     enabled: true
-    requestCpu: "128Mi"
-    requestMemory: "400m"
-    limitCpu: "256Mi"
-    limitMemory: "800m"
+    requestCpu: "100Mi"
+    requestMemory: "250m"
+    limitCpu: "200Mi"
+    limitMemory: "500m"
 svc:
   enabled: true
   name: devopswebsite
