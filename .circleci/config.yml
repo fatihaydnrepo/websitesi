@@ -54,7 +54,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt-get update && apt-get install -y curl python3-pip bash tar
+            apt-get update && apt-get install -y curl python3-pip bash tar google-cloud-cli-gke-gcloud-auth-plugin kubectl
             echo $GCLOUD_SERVICE_KEY > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json --quiet
             gcloud config set project websitesi-450615 --quiet
@@ -65,8 +65,8 @@ jobs:
             mv linux-amd64/helm /usr/local/bin/helm
             helm repo add bitnami https://charts.bitnami.com/bitnami --force-update
             helm repo update
-
-            gcloud components install gke-gcloud-auth-plugin kubectl --quiet
+  
+            # GKE Auth Plugin Yükleme
             export USE_GKE_GCLOUD_AUTH_PLUGIN=True
             
             # Kubernetes Erişimi Test Et
