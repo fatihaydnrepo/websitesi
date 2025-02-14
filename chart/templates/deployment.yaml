@@ -4,7 +4,6 @@ metadata:
   name: {{ .Values.deploy.name }}-deployment
   labels:
     app: {{ .Values.deploy.name }}
-    tags.datadoghq.com/env: {{ .Values.deploy.env }}
     tags.datadoghq.com/service: {{ .Values.deploy.name }}
 spec:
   replicas: {{ .Values.deploy.replicas }}
@@ -19,8 +18,6 @@ spec:
     metadata:
       labels:
         app: {{ .Values.deploy.name }}
-        tags.datadoghq.com/env: {{ .Values.deploy.env }}
-        tags.datadoghq.com/service: {{ .Values.deploy.name }}
     spec:
       imagePullSecrets:
       - name: docker-hub-secret
