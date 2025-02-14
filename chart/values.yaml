@@ -1,7 +1,7 @@
 deploy: 
   name: devopswebsite
   env: 
-  replicas: 2
+  replicas: 3
   port: 80
   targetport: 80
   image: reptilianusbileciktus/devopswebsite
