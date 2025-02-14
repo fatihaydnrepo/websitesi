@@ -71,10 +71,10 @@ jobs:
             helm repo add bitnami https://charts.bitnami.com/bitnami --force-update
             helm repo update
             gcloud container clusters get-credentials website --region europe-west2 --project websitesi-450615 --quiet
-            yes | gcloud components install gke-gcloud-auth-plugin kubectl
+            yes | gcloud components install gke-gcloud-auth-plugin kubectl || true
             echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.bashrc
             source ~/.bashrc
-            yes | gcloud components list
+            yes | gcloud components list || true
             
       - run:
           name: Verify gcloud installation
