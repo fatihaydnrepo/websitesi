@@ -7,7 +7,7 @@ deploy:
   image: reptilianusbileciktus/devopswebsite
   tag: latest
   resources:
-    enabled: true
+    enabled: false
     requestCpu: "100Mi"
     requestMemory: "250m"
     limitCpu: "200Mi"
@@ -23,7 +23,7 @@ svc:
     targetport: null
 hpa:
   autoscaling:
-    enabled: true
+    enabled: false
     minReplicas: 1
     maxReplicas: 3
     targetCPUUtilizationPercentage: 65
