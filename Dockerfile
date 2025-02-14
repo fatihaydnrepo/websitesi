@@ -1,9 +1,10 @@
-# Use the official Nginx image from Docker Hub
-FROM nginx:alpine
+# Use the official Nginx image to serve the static files
+FROM nginx:latest
 
-WORKDIR /app
+# Copy the static files to the Nginx HTML directory
+COPY . /usr/share/nginx/html
 
-# Expose port for Nginx
+# Expose port 80 to the outside world
 EXPOSE 80
 
 # Command to run Nginx in the foreground
