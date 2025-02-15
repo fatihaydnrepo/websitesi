@@ -11,6 +11,9 @@ workflows:
       - deploy:
           requires:
             - push
+      - notify:
+          requires:
+            - deploy
 
 jobs:
   build:
@@ -87,7 +90,6 @@ jobs:
             gcloud config set compute/zone europe-west2
             gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
 
-
       - run:
           name: Deploy to GKE with Helm
           command: |
@@ -101,3 +103,26 @@ jobs:
               --namespace default \
               --wait \
               --timeout 5m0s
+
+  notify:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - run:
+          name: Install dependencies
+          command: pip install requests
+      - run:
+          name: Send email via SendGrid
+          command: |
+            curl --request POST \
+              --url https://api.sendgrid.com/v3/mail/send \
+              --header "Authorization: Bearer ${SENDGRID_API_KEY}" \
+              --header "Content-Type: application/json" \
+              --data '{
+                "personalizations": [{
+                  "to": [{"email": "devopsfatihh@gmail.com"}],
+                  "subject": "Deploy Tamamlandı: DevOps Website"
+                }],
+                "from": {"email": "fatih_aydn@outlook.com"},
+                "content": [{"type": "text/plain", "value": "Yeni sürüm başarıyla deploy edildi. SHA: '"$CIRCLE_SHA1"'"}]
+              }'
