@@ -61,25 +61,19 @@ jobs:
             echo $GCLOUD_SERVICE_KEY > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json --quiet
             gcloud config set project websitesi-450615 --quiet
-            
-            # Kubernetes ve Helm Kurulumu
             curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz
             tar -xvzf helm.tar.gz
             mv linux-amd64/helm /usr/local/bin/helm
             helm repo add bitnami https://charts.bitnami.com/bitnami --force-update
             helm repo update
-  
-            # GKE Auth Plugin Yükleme
-            export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-            
-            # Kubernetes Erişimi Test Et
+            export USE_GKE_GCLOUD_AUTH_PLUGIN=True  
             gcloud container clusters get-credentials website --region europe-west2 --project websitesi-450615 --quiet
             kubectl cluster-info
             
       - run:
           name: Verify gcloud installation
           command: |
-            gcloud --version  # SDK'nın doğru yüklendiğini kontrol edin
+            gcloud --version 
             helm version
       - run:
           name: Setup Google Cloud CLI
@@ -93,10 +87,7 @@ jobs:
       - run:
           name: Deploy to GKE with Helm
           command: |
-            # Helm repo update
             helm repo update
-            
-            # Deploy/Upgrade Helm chart
             helm upgrade --install devops-website ./chart \
               --set image.repository=$DOCKER_USERNAME/devopswebsite \
               --set image.tag=$CIRCLE_SHA1 \
