@@ -58,16 +58,16 @@ jobs:
           name: Install dependencies
           command: |
             apt-get update && apt-get install -y curl python3-pip bash tar google-cloud-cli-gke-gcloud-auth-plugin kubectl
-            echo $GCLOUD_SERVICE_KEY > /root/gcloud-service-key.json
+            echo $GCLOUD_SERVICE_KEY1 > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json --quiet
-            gcloud config set project websitesi-450615 --quiet
+            gcloud config set project involuted-shine-455318-q9 --quiet
             curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz
             tar -xvzf helm.tar.gz
             mv linux-amd64/helm /usr/local/bin/helm
             helm repo add bitnami https://charts.bitnami.com/bitnami --force-update
             helm repo update
             export USE_GKE_GCLOUD_AUTH_PLUGIN=True  
-            gcloud container clusters get-credentials website --region europe-west2 --project websitesi-450615 --quiet
+            gcloud container clusters get-credentials website --region us-central1 --project involuted-shine-455318-q9 --quiet
             kubectl cluster-info
             
       - run:
@@ -78,11 +78,11 @@ jobs:
       - run:
           name: Setup Google Cloud CLI
           command: |
-            echo $GCLOUD_SERVICE_KEY > /root/gcloud-service-key.json
+            echo $GCLOUD_SERVICE_KEY1 > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json
-            gcloud config set project ${GOOGLE_PROJECT_ID}
+            gcloud config set project ${GOOGLE_PROJECT_ID1}
             gcloud config set compute/zone europe-west2
-            gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME}
+            gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME1}
 
       - run:
           name: Deploy to GKE with Helm
