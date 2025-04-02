@@ -60,7 +60,6 @@ jobs:
             apt-get update && apt-get install -y curl python3-pip bash tar google-cloud-cli-gke-gcloud-auth-plugin kubectl
             echo $GCLOUD_SERVICE_KEY1 > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json --quiet
-            gcloud config set account selininceogluu@gmail.com
             gcloud config set project involuted-shine-455318-q9 --quiet
             curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz -o helm.tar.gz
             tar -xvzf helm.tar.gz
