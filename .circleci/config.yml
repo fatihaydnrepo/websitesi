@@ -84,7 +84,7 @@ jobs:
             echo $GCLOUD_SERVICE_KEY1 > /root/gcloud-service-key.json
             gcloud auth activate-service-account --key-file=/root/gcloud-service-key.json
             gcloud config set project ${GOOGLE_PROJECT_ID1}
-            gcloud config set compute/zone europe-west2
+            gcloud config set compute/zone us-central1
             gcloud container clusters get-credentials ${GOOGLE_CLUSTER_NAME1}
 
       - run:
