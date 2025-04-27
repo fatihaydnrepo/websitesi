@@ -32,6 +32,50 @@ ingress:
     - secretName: fatih-tls
       hosts:
         - fatihayd.in
+hpa:
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 65
+    targetMemoryUtilizationPercentage: 65
+probe:
+  enabled: false
+  failureThreshold: 
+  periodSeconds: 
+  timeoutSeconds: 
+  initialDelaySeconds: 
+  pathreadiness: 
+  pathliveness: 
+  port: 
+ingress:
+  enabled: false
+  hosts: 
+  customAnnotations:
+    enabled: true
+    kubernetes.io/ingress.class: 
+  defaultPath: /
+  pathType: Prefix
+configmap:
+  enabled: false
+  name: 
+appconfigs:
+  configmap:
+    enabled: false
+volumeMounts:
+  enabled: false
+  pathOnContainer: 
+  pathOnHost: 
+secrets:
+  enabled: false
+  secretName:  
+externalSecret:
+  enabled: false
+  targetName: 
+nfs:
+  enabled: false
+  name: 
+  mountPath: 
+  claimName: 
 imagePullSecrets:
   - name: docker-hub-secret
-
