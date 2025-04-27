@@ -15,57 +15,23 @@ deploy:
 svc:
   enabled: true
   name: devopswebsite
-  port2:
-    enabled: false
-    targetport: null
-  port3:
-    enabled: false
-    targetport: null
-hpa:
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 3
-    targetCPUUtilizationPercentage: 65
-    targetMemoryUtilizationPercentage: 65
-probe:
-  enabled: false
-  failureThreshold: 
-  periodSeconds: 
-  timeoutSeconds: 
-  initialDelaySeconds: 
-  pathreadiness: 
-  pathliveness: 
-  port: 
 ingress:
-  enabled: false
-  hosts: 
-  customAnnotations:
-    enabled: true
-    kubernetes.io/ingress.class: 
-  defaultPath: /
-  pathType: Prefix
-configmap:
-  enabled: false
-  name: 
-appconfigs:
-  configmap:
-    enabled: false
-volumeMounts:
-  enabled: false
-  pathOnContainer: 
-  pathOnHost: 
-secrets:
-  enabled: false
-  secretName:  
-externalSecret:
-  enabled: false
-  targetName: 
-nfs:
-  enabled: false
-  name: 
-  mountPath: 
-  claimName: 
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  hosts:
+    - host: fatihayd.in
+      paths:
+        - path: /
+          pathType: Prefix
+          serviceName: devopswebsite
+          servicePort: 80
+  tls:
+    - secretName: fatih-tls
+      hosts:
+        - fatihayd.in
 imagePullSecrets:
   - name: docker-hub-secret
 
