@@ -12,5 +12,4 @@ spec:
       name: port1
       port: 80
       targetPort: {{ .Values.deploy.targetport }}
-    {{- end }}
 {{- end }}
