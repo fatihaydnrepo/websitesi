@@ -12,16 +12,5 @@ spec:
       name: port1
       port: 80
       targetPort: {{ .Values.deploy.targetport }}
-    {{- if and (hasKey .Values.svc "port2") .Values.svc.port2.enabled }}
-    - protocol: TCP
-      name: port2
-      port: {{ .Values.svc.port2.targetport }}
-      targetPort: {{ .Values.svc.port2.targetport }}
-    {{- end }}
-    {{- if and (hasKey .Values.svc "port3") .Values.svc.port3.enabled }}
-    - protocol: TCP
-      name: port3
-      port: {{ .Values.svc.port3.targetport }}
-      targetPort: {{ .Values.svc.port3.targetport }}
     {{- end }}
 {{- end }}
